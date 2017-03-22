@@ -34,7 +34,7 @@ Creating database migrations with the power of WP Table Migrations is quite easy
 
 ```php
 \TableMigrations\Migrations\Migration;
-``` 
+```
 
 And use [WP Cli](https://wp-cli.org/) to run the command:
 ```
@@ -52,53 +52,52 @@ Here are a few quick examples on how WP Table Migrations will be making your lif
 ---
 
 ### Creating and dropping custom tables
-This actually looks exactly the same as [Laravel's database migrations](https://laravel.com/docs/5.4/migrations), with the execption of having to extend a different class and create an instance of that class at the bottom.
+This actually looks exactly the same as [Laravel's database migrations](https://laravel.com/docs/5.4/migrations), with the exception of having to extend a different class and create an instance of that class at the bottom.
 
 ```php
+namespace MyPlugin\Database;
 
-    namespace MyPlugin\Database;
+use TableMigrations\Wrappers\Schema;
+use TableMigrations\Database\Blueprint;
+use TableMigrations\Migrations\Migration;
 
-    use TableMigrations\Wrappers\Schema;
-    use TableMigrations\Database\Blueprint;
-    use TableMigrations\Migrations\Migration;
-
-    class ProductMetaMigration extends Migration{
+class ProductMetaMigration extends Migration{
 
 
-        /**
-         * Put the table up
-         * 
-         * @return void
-         */
-        public function up()
-        {
-            Schema::create( 'product_meta', function( Blueprint $table ){
-                $table->increments( 'id' )->unique();
-                $table->integer( 'product_id' )->unsigned();
-                $table->string( 'image_url' )->nullable();
-                $table->integer( 'position' );
-                $table->float( 'price' );
-                $table->integer( 'stock' );
-            });         
-        }
-
-        /**
-         * Default down function
-         * 
-         * @return void
-         */
-        public function down()
-        {
-            Schema::drop( 'product_meta' ); 
-        }
-
+    /**
+     * Put the table up
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create( 'product_meta', function( Blueprint $table ){
+            $table->increments( 'id' )->unique();
+            $table->integer( 'product_id' )->unsigned();
+            $table->string( 'image_url' )->nullable();
+            $table->integer( 'position' );
+            $table->float( 'price' );
+            $table->integer( 'stock' );
+        });         
     }
 
+    /**
+     * Default down function
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop( 'product_meta' );
+    }
 
-    \MyPlugin\Database\ProductMetaMigration::getInstance();
+}
 
+
+\MyPlugin\Database\ProductMetaMigration::getInstance();
 ```
-In this example a table named `product_meta` is being created or destroyed, dependent on which direction the migration is running. 
+
+In this example a table named `product_meta` is created or destroyed, depending on which direction the migration is running.
 
 
 ### Creating columns
@@ -132,7 +131,7 @@ You can create a lot of different column types with Table Migrations. Here's a l
 ---
 
 ### Saving & Fetching data
-WordPress has all sorts of functions for saving and retrieving your data from the 12 database tables it already knows. We wouldn't want to leave you hanging, so we created a simpel wrapper for your custom tables as well.
+WordPress has all sorts of functions for saving and retrieving your data from the 12 database tables it already knows. We wouldn't want to leave you hanging, so we created a simple wrapper for your custom tables as well.
 
 ```php
 
@@ -150,6 +149,7 @@ Record::delete( 'product_meta', $id );
 ```
 
 The record class can handle table inserts, updates and upserts, but also fetches:
+
 ```php
 
 //find all product meta associated with this product:
@@ -160,15 +160,15 @@ Record::find( 'product_meta' )
 //find the first product meta where the price is 0
 Record::find( 'product_meta' )
         ->where([
-        
+
             'product_id' => $product_id,
             'price' => 0
-        
+
         ])->first();
 ```
 
-Adding where clauses results in "AND" queries being made on standard. Currently we're still working on "OR" support.
-`Record::find()` queries will return you either and `Array` or `null` if they turn out to be empty.
+Adding WHERE clauses results in "AND" queries by default. Currently we're still working on "OR" support.
+`Record::find()` queries will return either an `Array` or `null` if the query returned no table rows.
 
 
 
@@ -190,5 +190,3 @@ Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this proje
 * Suggesting new features
 * Writing or refactoring code
 * Fixing [issues](https://github.com/cuisine-wp/wp-table-migrations/issues)
-
-
