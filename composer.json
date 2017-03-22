@@ -1,0 +1,27 @@
+{
+  "name": "chefduweb/wp-table-migrations",
+  "description": "Create database schema's and migrations from PHP for your WordPress project",
+  "keywords": ["wordpress", "plugin", "framework"],
+  "homepage": "https://github.com/cuisine-wp/wp-table-migrations",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Luc Princen",
+      "email": "luc@chefduweb.nl",
+      "homepage": "https://www.chefduweb.nl"
+    },
+    {
+      "name": "Remy Bakker",
+      "email": "remy@chefduweb.nl",
+      "homepage": "https://www.chefduweb.nl"
+    },
+    {
+      "name": "Taylor Otwell",
+      "email": "taylor@laravel.com"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.3.2"
+  }
+}
