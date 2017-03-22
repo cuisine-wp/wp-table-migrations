@@ -20,7 +20,7 @@ Clone the git repo - `git clone https://github.com/cuisine-wp/wp-table-migration
 
 `composer require chefduweb/wp-table-migrations`
 
-After you have all the files you need to install cuisine like a regular WordPress plugin:
+After you have all the files you need to install wp-table-migrations like a regular WordPress plugin:
 
 1. move the files to wp-content/plugins
 2. get into the WordPress admin and go to plugins
@@ -47,7 +47,7 @@ That's it! See our examples for more:
 
 ## Quick examples
 
-Here are a few quick examples on how Cuisine will be making your life easier:
+Here are a few quick examples on how WP Table Migrations will be making your life easier:
 
 ---
 
