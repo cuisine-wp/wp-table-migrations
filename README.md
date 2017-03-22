@@ -128,8 +128,8 @@ You can create a lot of different column types with Table Migrations. Here's a l
 | $table->time('sunrise'); | TIME equivalent for the database. |
 | $table->tinyInteger('numbers'); | TINYINT equivalent for the database. |
 | $table->timestamp('added_on'); | TIMESTAMP equivalent for the database. |
-```php
 
+---
 
 ### Saving & Fetching data
 WordPress has all sorts of functions for saving and retrieving your data from the 12 database tables it already knows. We wouldn't want to leave you hanging, so we created a simpel wrapper for your custom tables as well.
